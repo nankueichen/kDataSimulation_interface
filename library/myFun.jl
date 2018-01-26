@@ -7,9 +7,13 @@ module myFun
         B0offsetForM3 = FrequencyOffsetForM3
         matrixSize = [matrixSizeX,matrixSizeY]
         TE = max(TE,0.01)
-        DW = min(DW, 100e-6)
-        DW = max(DW, 5e-6)
-
+        DW = 50e-6; # hard-coded for now
+        #DW = min(DW, 100e-6)
+        #DW = max(DW, 5e-6)
+        matrixSizeX = max(matrixSizeX,32)
+        matrixSizeX = min(matrixSizeX,128)
+        matrixSizeY = max(matrixSizeX,32)
+        matrixSizeY = min(matrixSizeX,128)
         fid = open("phantoms/m1.img"); m1 = read(fid,UInt8,128*128); close(fid)
         m1 = convert(Array{Float64},reshape(m1,128,128));
         fid = open("phantoms/m2.img"); m2 = read(fid,UInt8,128*128); close(fid)
